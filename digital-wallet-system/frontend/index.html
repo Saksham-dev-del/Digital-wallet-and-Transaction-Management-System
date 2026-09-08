@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Digital Wallet — Passbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ============ AUTH SCREEN ============ -->
+  <section id="auth-screen" class="screen">
+    <div class="auth-card">
+      <header class="auth-header">
+        <h1>Digital Wallet</h1>
+        <p class="ledger-note">Every rupee, entered and accounted for.</p>
+      </header>
+
+      <div class="tab-switch" role="tablist">
+        <button class="tab active" data-tab="login" role="tab">Log in</button>
+        <button class="tab" data-tab="register" role="tab">Open an account</button>
+      </div>
+
+      <!-- Login form -->
+      <form id="login-form" class="auth-form active">
+        <label>
+          <span>Username</span>
+          <input type="text" name="username" required autocomplete="username" />
+        </label>
+        <label>
+          <span>Password</span>
+          <input type="password" name="password" required autocomplete="current-password" />
+        </label>
+        <button type="submit" class="btn-primary">Log in</button>
+        <p class="form-message" data-for="login"></p>
+      </form>
+
+      <!-- Register form -->
+      <form id="register-form" class="auth-form">
+        <label>
+          <span>Full name</span>
+          <input type="text" name="full_name" required />
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          <span>Choose a username</span>
+          <input type="text" name="username" required />
+        </label>
+        <label>
+          <span>Choose a password</span>
+          <input type="password" name="password" required minlength="4" />
+        </label>
+        <button type="submit" class="btn-primary">Open account</button>
+        <p class="form-message" data-for="register"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ DASHBOARD SCREEN ============ -->
+  <section id="dashboard-screen" class="screen hidden">
+    <header class="topbar">
+      <div class="brand">Digital Wallet</div>
+      <div class="account-chip">
+        <span id="account-name">—</span>
+        <span class="dot">·</span>
+        <span id="account-wallet">Wallet #—</span>
+      </div>
+      <button id="logout-btn" class="btn-ghost">Log out</button>
+    </header>
+
+    <main class="dashboard">
+      <section class="balance-card">
+        <p class="balance-label">Current balance</p>
+        <p class="balance-amount"><span class="currency">₹</span><span id="balance-value">0.00</span></p>
+
+        <div class="action-row">
+          <button class="action-btn" data-action="deposit">Deposit</button>
+          <button class="action-btn" data-action="withdraw">Withdraw</button>
+          <button class="action-btn" data-action="transfer">Transfer</button>
+        </div>
+
+        <!-- Inline action panels -->
+        <div class="action-panel" id="panel-deposit">
+          <form data-op="deposit">
+            <label>
+              <span>Amount to deposit</span>
+              <input type="number" step="0.01" min="0.01" name="amount" required />
+            </label>
+            <button type="submit" class="btn-primary small">Confirm deposit</button>
+          </form>
+        </div>
+
+        <div class="action-panel" id="panel-withdraw">
+          <form data-op="withdraw">
+            <label>
+              <span>Amount to withdraw</span>
+              <input type="number" step="0.01" min="0.01" name="amount" required />
+            </label>
+            <button type="submit" class="btn-primary small">Confirm withdrawal</button>
+          </form>
+        </div>
+
+        <div class="action-panel" id="panel-transfer">
+          <form data-op="transfer">
+            <label>
+              <span>Destination wallet ID</span>
+              <input type="number" step="1" min="1" name="to_wallet_id" required />
+            </label>
+            <label>
+              <span>Amount to transfer</span>
+              <input type="number" step="0.01" min="0.01" name="amount" required />
+            </label>
+            <button type="submit" class="btn-primary small">Confirm transfer</button>
+          </form>
+        </div>
+
+        <p class="action-message" id="action-message"></p>
+      </section>
+
+      <section class="ledger-card">
+        <div class="ledger-header">
+          <h2>Ledger</h2>
+          <button id="refresh-btn" class="btn-ghost small">Refresh</button>
+        </div>
+
+        <table class="ledger-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th class="num">Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="ledger-body">
+            <tr class="empty-row"><td colspan="4">No entries yet.</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </section>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
