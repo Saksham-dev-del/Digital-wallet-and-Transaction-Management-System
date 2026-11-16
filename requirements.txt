@@ -1,0 +1,4 @@
+Flask>=3.0          # web framework
+numpy>=1.24         # used by the AI fraud model
+scikit-learn>=1.3   # IsolationForest (optional: a statistical fallback is used if it is missing)
+redis>=5.0          # optional at runtime: without a Redis server the app uses in-memory fallbacks

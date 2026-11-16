@@ -1,0 +1,17 @@
+# Runs the app together with a Redis server:   docker compose up --build   ->   http://localhost:5000
+services:
+  redis:
+    image: redis:7-alpine
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      DEMO_MODE: "true"
+    depends_on:
+      - redis
+    volumes:
+      - wallet-data:/app/data
+volumes:
+  wallet-data:

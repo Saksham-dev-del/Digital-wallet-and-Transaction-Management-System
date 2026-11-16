@@ -1,0 +1,10 @@
+{
+  "name": "Smart Wallet",
+  "short_name": "Smart Wallet",
+  "description": "A digital wallet with AI payment checks and a live look at the operating system underneath.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F5FB",
+  "theme_color": "#2E3FB5",
+  "icons": [{ "src": "/static/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
